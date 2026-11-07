@@ -1,0 +1,10 @@
+{
+	"id": "property-date-format",
+	"name": "Property Date Format",
+	"version": "1.0.0",
+	"minAppVersion": "1.4.0",
+	"description": "Show and type dates in Properties in your own format (DD.MM.YYYY, 24-hour time, ...), independent of your system language. Notes keep the standard value.",
+	"author": "Prometheus",
+	"authorUrl": "https://prometheus-maker.github.io/",
+	"isDesktopOnly": false
+}

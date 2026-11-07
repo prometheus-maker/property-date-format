@@ -1,0 +1,14 @@
+{
+  "name": "property-date-format",
+  "version": "1.0.0",
+  "description": "Obsidian plugin: your own date format in Properties",
+  "main": "main.js",
+  "scripts": {
+    "build": "node esbuild.config.mjs production && tsc -p .",
+    "test": "node esbuild.config.mjs production && node --test test/"
+  },
+  "author": "Prometheus",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": { "@types/node": "^26.6.6", "esbuild": "^0.28.2", "obsidian": "^1.14.4", "typescript": "^7.0.2", "moment": "^2.30.1" }
+}

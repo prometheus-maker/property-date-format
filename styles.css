@@ -1,0 +1,8 @@
+/* Property Date Format: our text field replaces the native date input on screen; the native one stays in the DOM. */
+/* Kept rendered (not display:none) so its own picker can still open from our calendar button. */
+input.pdf-native { position: absolute !important; right: 0; bottom: 0; opacity: 0 !important; width: 1px !important; height: 1px !important; padding: 0 !important; border: 0 !important; pointer-events: none; }
+.metadata-property-value:has(> input.pdf-native) { position: relative; }
+.pdf-field { display: flex; align-items: center; flex: 1 1 auto; min-width: 0; }
+.pdf-field .pdf-text { flex: 1 1 auto; min-width: 0; }
+.pdf-field .pdf-pick { flex: none; }
+.pdf-text.pdf-bad { color: var(--text-error); text-decoration: underline wavy var(--text-error); }
