@@ -12,13 +12,13 @@ export default class PropertyDateFormat extends Plugin {
 	private redraws: (() => void)[] = [];
 
 	async onload() {
-		this.settings = { ...DEFAULTS, ...(await this.loadData()) };
+		this.settings = { ...DEFAULTS, ...((await this.loadData()) as Partial<Settings> | null) };
 		this.addSettingTab(new FormatTab(this.app, this));
 		this.app.workspace.onLayoutReady(() => {
 			this.scan(document.body);
 			// Property widgets are created and re-created all the time (opening notes, editing, Bases), so watch for them.
 			this.observer = new MutationObserver((muts) => {
-				for (const m of muts) m.addedNodes.forEach((n) => n instanceof HTMLElement && this.scan(n));
+				for (const m of muts) m.addedNodes.forEach((n) => n.instanceOf(HTMLElement) && this.scan(n));
 			});
 			this.observer.observe(document.body, { childList: true, subtree: true });
 		});
@@ -29,6 +29,7 @@ export default class PropertyDateFormat extends Plugin {
 		document.querySelectorAll<HTMLElement>(".pdf-field").forEach((el) => el.remove());
 		document.querySelectorAll<HTMLInputElement>("input.pdf-native").forEach((el) => {
 			el.classList.remove("pdf-native");
+			el.parentElement?.removeClass("pdf-host");
 			delete el.dataset[DONE];
 		});
 	}
@@ -56,6 +57,7 @@ export default class PropertyDateFormat extends Plugin {
 		setIcon(pick, kind === "date" ? "calendar" : "calendar-clock");
 		native.insertAdjacentElement("beforebegin", wrap);
 		native.classList.add("pdf-native");
+		native.parentElement?.addClass("pdf-host");
 
 		const s = () => this.settings;
 		const redraw = () => {

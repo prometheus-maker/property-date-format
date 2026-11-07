@@ -1,6 +1,6 @@
 {
   "name": "property-date-format",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Obsidian plugin: your own date format in Properties",
   "main": "main.js",
   "scripts": {
